@@ -1,6 +1,6 @@
 package com.example.sb1configuration;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,13 +29,13 @@ public class DemoApplicationTests {
 
     @Test
     public void setDevApp() {
-        ResponseEntity<String> forEntity = restTemplate.getForEntity("http://localhost:" + devApp.getMappedPort(8080), String.class);
+        ResponseEntity<String> forEntity = restTemplate.getForEntity("http://localhost:" + devApp.getMappedPort(8080) + "/profile", String.class);
         Assertions.assertEquals("Development", forEntity.getBody());
     }
 
     @Test
     public void setProdApp() {
-        ResponseEntity<String> forEntity = restTemplate.getForEntity("http://localhost:" + prodApp.getMappedPort(8080), String.class);
+        ResponseEntity<String> forEntity = restTemplate.getForEntity("http://localhost:" + prodApp.getMappedPort(8081) + "/profile", String.class);
         Assertions.assertEquals("Production", forEntity.getBody());
     }
 
